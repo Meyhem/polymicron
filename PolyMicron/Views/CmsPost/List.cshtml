@@ -1,0 +1,161 @@
+﻿@model PostListModel
+@{
+    Layout = "CmsLayout";
+    ViewBag.Title = "Post list";
+}
+
+@section Styles {
+    <link href="~/css/cms-list.css" rel="stylesheet" type="text/css" />
+}
+
+@section Scripts {
+    <script src="~/js/cms-list.js"></script>
+}
+
+<div class="container post-list">
+    <message-boxes />
+    <div class="content is-fullwidth has-text-right">
+        <a class="is-link is-size-4" asp-action="Create" asp-controller="CmsPost">
+            <span class="icon">
+                <i class="fas fs-lg fa-plus"></i>
+            </span>
+            Create new post
+        </a>
+    </div>
+
+    @foreach (var post in Model.Posts)
+    {
+        <div class="box @(post.Published ? "published" : "")">
+            <div class="columns">
+                <div class="column is-2">
+                    @if (post.HasThumbnail)
+                    {
+                        <img src="@Url.Action("Thumbnail", "Post", new { id = post.Id })" />
+                    }
+                </div>
+                <article class="column is-8 media">
+                    <div class="media-content">
+                        <div class="content">
+                            <p>
+                                <span class="is-size-3">@post.Title</span>
+                            </p>
+                            <p>
+                                <span class="is-size-5 has-text-grey">@post.Subtitle</span>
+                            </p>
+                        </div>
+                    </div>
+                    <span class="has-text-grey-light">Created @@ @post.CreatedAt.ToPmFormat()</span>
+                    <br />
+                    <span class="has-text-grey-light">Last update @@ @post.UpdatedAt.ToPmFormat()</span>
+                </article>
+                <div class="column is-2">
+                    <div class="columns is-multiline">
+                        <div class="column is-half has-text-centered">
+                            <a asp-action="Edit"
+                               asp-controller="CmsPost"
+                               asp-route-id="@post.Id"
+                               class="button is-white"
+                               title="Edit">
+                                <span class="icon">
+                                    <i class="fas fa-lg fa-feather-alt"></i>
+                                </span>
+                            </a>
+                        </div>
+
+                        <div class="column is-half has-text-centered">
+                            @if (post.Published)
+                            {
+                                <form method="POST" asp-action="Unpublish" asp-controller="CmsPost" asp-route-id="@post.Id">
+                                    <button class="button is-white" title="Unpublish">
+                                        <span class="icon">
+                                            <i class="fas fa-lg fa-eye-slash"></i>
+                                        </span>
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <form method="POST" asp-action="Publish" asp-controller="CmsPost" asp-route-id="@post.Id">
+                                    <button class="button is-white" title="Publish">
+                                        <span class="icon">
+                                            <i class="fas fa-lg fa-eye"></i>
+                                        </span>
+                                    </button>
+                                </form>
+                            }
+                        </div>
+                        <div class="column is-half has-text-centered">
+                            <button title="Delete" class="button is-white button-delete-post" data-post-id="@post.Id">
+                                <span class="icon">
+                                    <i class="fas fa-lg fa-trash-alt"></i>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="column is-half has-text-centered">
+                            <button class="button is-white button-add-thumbnail" data-post-id="@post.Id">
+                                <span class="icon">
+                                    <i class="fas fa-lg fa-image"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="delete-post-modal-@post.Id" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Deleting post '@post.Id'</p>
+                    <button class="delete delete-post-close" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body">
+                    Are you sure you want to delete the post ? This action is irreversible.
+                </section>
+                <footer class="modal-card-foot">
+                    <form asp-action="Delete" asp-controller="CmsPost" asp-route-id="@post.Id" method="POST">
+                        <button class="button is-danger" data-loader="1">Yes, delete</button>
+                    </form>
+                    <button class="button delete-post-close">Cancel</button>
+                </footer>
+            </div>
+        </div>
+
+        <div id="add-thumbnail-modal-@post.Id" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <form asp-action="UploadThumbnail" asp-controller="CmsPost" asp-route-id="@post.Id" method="POST" enctype="multipart/form-data">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Add thumbnail image</p>
+                        <button type="button" class="delete add-thumbnail-close" aria-label="close"></button>
+                    </header>
+                    <section class="modal-card-body">
+                        <input type="file" name="thumbnailImage" />
+                    </section>
+                    <footer class="modal-card-foot">
+                        <button type="submit" class="button is-danger" data-loader="1">Upload</button>
+                        <button type="button" class="button add-thumbnail-close">Cancel</button>
+                    </footer>
+                </form>
+            </div>
+        </div>
+    }
+
+    <nav class="pagination" role="navigation" aria-label="pagination">
+        <ul class="pagination-list">
+            @for (var p = 1; p <= Model.Pages; p++)
+            {
+                <li>
+                    <a asp-action="List" 
+                        asp-controller="CmsPost" 
+                        asp-route-page="@p" 
+                        class="pagination-link @(Model.Page == p ? "is-current" : "")" 
+                        aria-label="Page @p">
+                        @p
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>

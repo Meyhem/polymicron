@@ -1,0 +1,131 @@
+﻿@model PostModel
+
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.MetaAuthor = Model.Author.DisplayName;
+    ViewBag.MetaDescription = Model.Title;
+    ViewBag.MetaKeywords = Model.TagsAggr;
+
+    ViewBag.OgUrl = Url.AbsoluteAction("Post", "Post", new { id = Model.Id });
+    ViewBag.OgTitle = Model.Title;
+    ViewBag.OgType = "article";
+    ViewBag.OgDescription = Model.Subtitle;
+    if (Model.ThumbnailId.HasValue)
+    {
+        ViewBag.OgImage = Url.AbsoluteAction("Thumbnail", "Post", new { id = Model.Id });
+    }
+}
+
+@section Meta {
+    <meta property="article:author" content="@Model.Author.DisplayName" />
+    <meta property="article:published_time" content="@Model.CreatedAt.ToIso8601()" />
+    <meta property="article:modified_time" content="@Model.UpdatedAt.ToIso8601()" />
+    <meta property="article:author" content="@Model.Author.DisplayName" />
+    <meta property="article:tag" content="@Model.TagsAggr" />
+}
+
+@section HeadScripts {
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+}
+
+@section Scripts {
+    <script src="~/js/post.js"></script>
+}
+
+<div class="container page-content">
+    <div class="box is-angular">
+        <div class="media-content">
+            <article class="content">
+                <header>
+                    <h1 class="title is-1" aria-level="1">@Model.Title</h1>
+                    <h2 class="subtitle is-3" aria-level="2">@Model.Subtitle</h2>
+                    <span class="has-text-grey">
+                        Written by @Model.Author.DisplayName on @Model.CreatedAt.ToPmFormat()
+                    </span>
+                    <div class="tag-array">
+                        @foreach (var tag in Model.Tags)
+                        {
+                            <a asp-action="Index" asp-controller="Home" asp-route-search="@tag.Tag">
+                                <span class="tag is-light">@tag.Tag</span>
+                            </a>
+                        }
+                    </div>
+                </header>
+                <section class="ql-editor">
+                    @Html.Raw(Model.Body)
+                </section>
+                @if (Model.CanVote)
+                {
+                    <footer>
+                        <div class='vote-box'>
+                            <form asp-controller="Post" asp-action="Vote" asp-route-id="@Model.Id" asp-route-dir="up" method="POST">
+                                <button class="button is-white" aria-label="Upvote">
+                                    <span class="icon @(Model.Upvoted ? "has-text-success" : "")">
+                                        <i class="fas fa-thumbs-up"></i>
+                                    </span>
+                                    <span>@Model.Upvotes</span>
+                                </button>
+                            </form>
+                            <form asp-controller="Post" asp-action="Vote" asp-route-id="@Model.Id" asp-route-dir="down" method="POST">
+                                <button class="button is-white" aria-label="Downvote">
+                                    <span class="icon @(Model.Downvoted ? "has-text-danger" : "")">
+                                        <i class="fas fa-thumbs-down"></i>
+                                    </span>
+                                    <span>@Model.Downvotes</span>
+                                </button>
+                            </form>
+                        </div>
+                    </footer>
+                }
+            </article>
+        </div>
+    </div>
+
+    <div class="comments">
+        @foreach (var comm in Model.Comments)
+        {
+            <div class="card">
+                <div class="card-header">
+                    <p class="card-header-title">
+                        @comm.Name @@ @comm.CreatedAt.ToPmFormat()
+                    </p>
+                </div>
+                <div class="card-content">
+                    <p>
+                        @comm.Text 
+                    </p>
+</div>
+            </div>
+        }
+    </div>
+
+    <form class="user-comment" asp-controller="Post" asp-action="Comment" method="post" style="visibility: hidden;">
+        <div class="field">
+            <div class="control">
+                <input id="name-input" class="input" type="text" name="Name" placeholder="Your alias (don't use your real name)" />
+                <message-boxes key="InputName" />
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+
+                <textarea class="textarea" maxlength="255" name="Text" placeholder="Comment up to 255 chars"></textarea>
+                <message-boxes key="InputText" />
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+
+                <div class="g-recaptcha" data-sitekey="@Model.ReCaptchaKey"></div>
+                <message-boxes key="Captcha" />
+
+            </div>
+        </div>
+
+        <button id="submit-comment-button" class="button is-primary" type="button" data-loader="1">Post a comment</button>
+    </form>
+
+</div>
+

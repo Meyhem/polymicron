@@ -1,0 +1,7 @@
+.ql-font-roboto {
+  font-family: "Roboto" sans-serif;
+}
+
+.quill-container .ql-font span[data-label="Roboto"]::before {
+  font-family: "Roboto" sans-serif;
+}

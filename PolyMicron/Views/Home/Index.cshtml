@@ -1,0 +1,91 @@
+﻿@model PostListModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Styles {
+    <link href="~/css/home.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="container page-content">
+    <div class="columns">
+
+        <aside class="column is-3">
+            <form asp-action="Index" asp-controller="Home" method="GET">
+                <div class="field has-addons">
+                    <div class="control">
+                        <input asp-for="Search" class="input is-medium" type="text" placeholder="Search titles, tags..." />
+                    </div>
+                    <div class="control">
+                        <button class="button is-primary is-medium">
+                            <span class="icon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                @if (!string.IsNullOrWhiteSpace(Model.Search))
+                {
+                    <a asp-action="Index" asp-controller="Home">Clear filter</a>
+                }
+            </form>
+        </aside>
+
+        <div class="column is-9">
+            <div class="columns is-variable is-multiline is-3">
+                @foreach (var post in Model.Posts)
+                {
+                    <div class="column is-6">
+                        <div class="card post-card">
+                            <header class="card-content">
+                                <p class="title">
+                                    <a asp-action="Post" asp-controller="Post" asp-route-id="@post.Id" asp-route-slug="@post.TitleSlug">
+                                        @post.Title
+                                    </a>
+                                </p>
+                                <p class="subtitle">
+                                    @post.Subtitle
+                                </p>
+                                @if (post.HasThumbnail)
+                                {
+                                    <div>
+                                        <img src="@Url.Action("Thumbnail", "Post", new { id = post.Id })" />
+                                    </div>
+                                }
+                                <div class="tag-array">
+                                    @foreach (var tag in post.Tags)
+                                    {
+                                        <a asp-action="Index" asp-controller="Home" asp-route-search="@tag.Tag">
+                                            <span class="tag is-light">@tag.Tag</span>
+                                        </a>
+                                    }
+
+                                </div>
+                            </header>
+                        </div>
+                    </div>
+                }
+            </div>
+            <nav class="pagination" role="navigation" aria-label="Pagination navigation">
+                <ul class="pagination-list">
+                    @for (var p = 1; p <= Model.Pages; p++)
+                    {
+                        <li>
+                            <a asp-action="Index"
+                               asp-controller="Home"
+                               asp-route-page="@p"
+                               asp-route-search="@Model.Search"
+                               class="pagination-link @(Model.Page == p ? "is-current" : "")"
+                               aria-label="Go to page @p"
+                               aria-current="@(p == Model.Page ? "true" : "false")"    
+                            >
+                                @p
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+

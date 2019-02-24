@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html xmlns:og="http://ogp.me/ns#" xmlns:article="http://ogp.me/ns/article#">
+<head>
+    <meta charset="utf-8" />
+
+    @if (!string.IsNullOrWhiteSpace(ViewBag.MetaDescription))
+    {
+        <meta name="description" content="@ViewBag.MetaDescription" />
+    }
+
+    @if (!string.IsNullOrWhiteSpace(ViewBag.MetaKeywords))
+    {
+        <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    }
+
+    @if (!string.IsNullOrWhiteSpace(ViewBag.MetaAuthor))
+    {
+        <meta name="author" content="@ViewBag.MetaAuthor" />
+    }
+
+    @if (!string.IsNullOrWhiteSpace(ViewBag.OgUrl))
+    {
+        <meta property="og:url" content="@ViewBag.OgUrl" />
+    }
+    else
+    {
+        <meta property="og:url" content="@Url.AbsoluteAction("Index", "Home")" />
+    }
+
+
+    @if (!string.IsNullOrWhiteSpace(ViewBag.OgType))
+    {
+        <meta property="og:type" content="@ViewBag.OgType" />
+    }
+    else
+    {
+        <meta property="og:type" content="website" />
+    }
+
+    @if (!string.IsNullOrWhiteSpace(ViewBag.OgTitle))
+    {
+        <meta property="og:title" content="@ViewBag.OgTitle" />
+    }
+    else
+    {
+        <meta property="og:title" content="@ViewBag.Title" />
+    }
+
+    @if (!string.IsNullOrWhiteSpace(ViewBag.OgImage))
+    {
+        <meta property="og:image" content="@ViewBag.OgImage" />
+    }
+    @if (!string.IsNullOrWhiteSpace(ViewBag.OgDescription))
+    {
+        <meta property="og:description" content="@ViewBag.OgDescription" />
+    }
+
+    @RenderSection("Meta", required: false)
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"]</title>
+
+    <link href="~/vendor/bulma.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/vendor/all.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/vendor/quill.snow.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/css/quill-fonts.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/shared.css" rel="stylesheet" type="text/css" />
+
+    @RenderSection("Styles", required: false)
+    @RenderSection("HeadScripts", required: false)
+</head>
+<body>
+    <nav class="navbar is-dark" role="navigation" aria-label="Main navigation">
+        <div class="navbar-brand">
+            <a asp-controller="Home" asp-action="Index" class="navbar-item">
+                <strong>Polymicron</strong>
+            </a>
+            <div class="navbar-burger burger" data-target="navbar-burger-target">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <div id="navbar-burger-target" class="navbar-menu">
+            <div class="navbar-start">
+                <a asp-controller="Home" asp-action="Index" class="navbar-item is-dark">
+                    Posts
+                </a>
+                <a asp-controller="Home" asp-action="About" class="navbar-item is-dark">
+                    About
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero is-dark">
+        <div class="hero-body container">
+            <span class="title">Polymicron blog</span>
+            <br />
+            <span class="subtitle">*Some useless inspiring quote*</span>
+        </div>
+    </section>
+    
+    <div class="page-container">
+        <noscript>
+            <div class="container message is-warning">
+                <div class="message-body">
+                    This site has limited functionality without Javascript.
+                </div>
+            </div>
+        </noscript>
+        @RenderBody()
+        <footer class="footer has-background-dark has-text-light">
+            <p>&copy; @DateTime.Now.Year - Copyright here</p>
+        </footer>
+    </div>
+
+    <script src="/vendor/jquery.min.js"></script>
+    <script src="/js/shared.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

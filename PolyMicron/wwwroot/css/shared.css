@@ -1,0 +1,71 @@
+body {
+  font-family: "Roboto", "Segoe UI", "Helvetica", "Arial", sans-serif !important;
+  font-size: 1rem;
+}
+
+.is-angular {
+  border-radius: 0;
+}
+
+.navbar-menu.is-active, .modal {
+  animation: kf-fadein 0.4s ease;
+}
+
+.page-container {
+  animation: kf-fadein 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.page-content {
+  margin-top: 1em;
+}
+
+.vote-box > form {
+  display: inline-block;
+}
+
+.button[disabled] {
+  opacity: 1;
+  cursor: initial;
+}
+
+.tag-array .tag {
+  cursor: pointer;
+}
+
+.tag-array .tag:hover {
+  background-color: #dadada;
+}
+
+footer.footer {
+  margin-top: 2em;
+}
+
+@keyframes kf-fadein {
+  0% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.post-list .box.published {
+    border-left: 5px solid #23d160;
+}
+
+.post-list .box:not(.published) {
+    border-left: 5px solid #000000;
+}
+    
+/* Comments */
+.comments .card {
+    margin-top: 1em;
+}
+
+.comments .card-content {
+    overflow-wrap: break-word;
+}
+
+.user-comment {
+    margin-top: 2em;
+}

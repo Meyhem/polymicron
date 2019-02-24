@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Error";
+    ViewData["HideNavbar"] = true;
+    Layout = "MainLayout";
+}
+
+<div class="hero is-danger">
+    <div class="hero-body">
+        <h1 class="title">An error occured, why did you do that ? (ノಠ益ಠ)ノ彡┻━┻ </h1>
+        <h2 class="subtitle">
+            <strong>HTTP 600: Your fault (^_^メ)</strong>
+        </h2>
+        ¯\_(ツ)_/¯: @ViewData["Message"]
+
+        @if (ViewData.ContainsKey("Trace") && !string.IsNullOrEmpty(ViewData["Trace"] as string))
+        {
+            <br />
+            @: Stacktrace: @ViewData["Trace"]
+        }
+    </div>
+</div>
+
+

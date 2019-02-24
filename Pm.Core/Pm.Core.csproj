@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pm.Common\Pm.Common.csproj" />
+    <ProjectReference Include="..\Pm.Data\Pm.Data.csproj" />
+    <ProjectReference Include="..\Pm.Models\Pm.Models.csproj" />
+  </ItemGroup>
+
+</Project>

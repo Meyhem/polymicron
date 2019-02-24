@@ -1,0 +1,66 @@
+﻿@{
+    var HideNavbar = ViewData["HideNavbar"] as bool? ?? false;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <link href="~/vendor/bulma.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/vendor/all.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/css/shared.css" rel="stylesheet" type="text/css" />
+
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    @if (!HideNavbar)
+    {
+        <nav class="navbar is-dark">
+            <div class="navbar-brand">
+                <a class="navbar-item" asp-controller="CmsPost" asp-action="List">
+                    <strong>Poly Micron CMS</strong>
+                </a>
+                <div class="navbar-burger burger" data-target="navbar-burger-target">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <div id="navbar-burger-target" class="navbar-menu has-background-dark">
+                <div class="navbar-start">
+                    <div class="navbar-item">
+                        <a class="button is-dark" asp-action="List" asp-controller="CmsPost">
+                            Posts
+                        </a>
+                    </div>
+                </div>
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <form asp-controller="CmsLogin" asp-action="Logout" method="post">
+                            <button class="button is-dark" type="submit">
+                                <span>
+                                    Logout&nbsp;
+                                    <span class="icon">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                    </span>
+                                </span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    }
+
+    <div class="page-container">
+        @RenderBody()
+    </div>
+    <script src="~/vendor/jquery.min.js"></script>
+    <script src="~/js/shared.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

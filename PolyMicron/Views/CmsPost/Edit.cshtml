@@ -1,0 +1,68 @@
+﻿@model PostModel
+@{
+    Layout = "CmsLayout";
+    ViewBag.Title = Model.Id.HasValue ? "Edit - " + Model.Title : "Creating new post";
+}
+
+@section Scripts {
+    <script src="~/vendor/quill.min.js"></script>
+    <script src="~/js/cms-edit-post.js"></script>
+    <script src="~/vendor/tags-input.js"></script>
+}
+
+@section Styles {
+    <link href="~/css/shared.css" rel="stylesheet" type="text/css" />
+    <link href="~/vendor/quill.snow.css" rel="stylesheet" type="text/css" />
+    <link href="~/vendor/tags-input.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/quill-fonts.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/cms-edit-post.css" rel="stylesheet" type="text/css" />
+}
+
+    <div class="container">
+        @if(Model.Id.HasValue)
+        {
+            <h1 class="is-size-2">Editing post @Model.Id</h1>
+        }
+        else
+        {
+            <h1 class="is-size-2">Creating new post</h1>
+        }
+        <message-boxes />
+        <form method="POST" asp-action="Submit" asp-controller="CmsPost">
+
+            <input type="hidden" asp-for="Id" />
+            <div class="field">
+                <label class="label">Title</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Title" asp-for="Title" />
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Subtitle</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Subtitle" asp-for="Subtitle" />
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Tags</label>
+                <div class="control">
+                    <input class="input" type="tags" placeholder="Separate by tabs or commas" asp-for="TagsAggr" />
+                </div>
+            </div>
+
+            <div class="quill-container">@Html.Raw(Model.Body)</div>
+
+            <input id="quill-mirror" type="hidden" asp-for="Body" />
+
+            <div class="field">
+                <label class="label"></label>
+                <div class="control">
+                    <button class="button is-primary is-fullwidth" type="submit" data-loader="1">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
