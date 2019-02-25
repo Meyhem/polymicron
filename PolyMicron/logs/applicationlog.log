@@ -726,3 +726,8 @@ Npgsql.PostgresException (0x80004005): 42P01: relation "Users" does not exist
 2019-02-24 18:00:03.122 +01:00 [WRN] Migrating db
 2019-02-24 18:00:15.335 +01:00 [WRN] The Include operation for navigation '[i].Tags' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
 2019-02-24 18:00:15.668 +01:00 [WRN] The Include operation for navigation '[i].Tags' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-02-25 10:38:15.020 +01:00 [WRN] No XML encryptor configured. Key "8155d37b-33d6-48e5-986b-ebe1d3cbd02e" may be persisted to storage in unencrypted form.
+2019-02-25 10:38:15.376 +01:00 [WRN] Starting server in Development environment.
+2019-02-25 10:38:18.344 +01:00 [WRN] Migrating db
+2019-02-25 10:38:42.331 +01:00 [WRN] The Include operation for navigation '[i].Tags' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-02-25 10:38:42.716 +01:00 [WRN] The Include operation for navigation '[i].Tags' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
