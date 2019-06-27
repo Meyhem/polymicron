@@ -1168,3 +1168,21 @@ Npgsql.PostgresException (0x80004005): 42P01: relation "Users" does not exist
 2019-06-27 15:50:36.975 +02:00 [WRN] Migrating db
 2019-06-27 15:50:40.708 +02:00 [WRN] The Include operation for navigation '[i].Tags' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
 2019-06-27 15:50:41.044 +02:00 [WRN] The Include operation for navigation '[i].Tags' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-06-27 11:55:28.263 -04:00 [WRN] No XML encryptor configured. Key "7d5d2038-5a40-427b-bcf5-71b6866aa96b" may be persisted to storage in unencrypted form.
+2019-06-27 11:55:28.539 -04:00 [WRN] Starting server in Development environment.
+2019-06-27 11:55:30.766 -04:00 [WRN] Migrating db
+2019-06-27 11:56:21.936 -04:00 [WRN] Starting server in Development environment.
+2019-06-27 11:56:24.224 -04:00 [WRN] Migrating db
+2019-06-27 11:57:16.696 -04:00 [WRN] Starting server in Development environment.
+2019-06-27 11:57:18.975 -04:00 [WRN] Migrating db
+2019-06-27 11:57:21.278 -04:00 [WRN] The Include operation for navigation '[i].Tags' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-06-27 11:57:21.637 -04:00 [WRN] The Include operation for navigation '[i].Tags' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-06-27 11:57:38.849 -04:00 [WRN] Failed login attempt r00t:root
+2019-06-27 11:57:51.443 -04:00 [WRN] Failed login attempt r00t:r00t
+2019-06-27 11:58:10.787 -04:00 [WRN] Starting server in Development environment.
+2019-06-27 11:58:13.035 -04:00 [WRN] Migrating db
+2019-06-27 11:58:17.826 -04:00 [WRN] Failed login attempt r00t:root
+2019-06-27 11:58:34.186 -04:00 [WRN] Starting server in Development environment.
+2019-06-27 11:58:36.684 -04:00 [WRN] Migrating db
+2019-06-27 12:00:10.969 -04:00 [WRN] The Include operation for navigation '[i].Tags' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-06-27 12:00:11.003 -04:00 [WRN] The Include operation for navigation '[i].Tags' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
