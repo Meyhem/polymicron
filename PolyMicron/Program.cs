@@ -20,7 +20,7 @@ namespace ProjectPlaguemangler
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-		.UseUrls("http://*:3000")
+		.UseUrls("http://0.0.0.0:3000")
                 .UseKestrel()
                 .UseStartup<Startup>()
                 .UseSerilog()

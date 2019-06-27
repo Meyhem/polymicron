@@ -1158,3 +1158,13 @@ Npgsql.PostgresException (0x80004005): 42P01: relation "Users" does not exist
 2019-06-27 15:39:32.843 +02:00 [WRN] Migrating db
 2019-06-27 15:42:16.906 +02:00 [WRN] Starting server in Development environment.
 2019-06-27 15:42:19.523 +02:00 [WRN] Migrating db
+2019-06-27 15:45:30.711 +02:00 [WRN] Starting server in Development environment.
+2019-06-27 15:45:33.426 +02:00 [WRN] Migrating db
+2019-06-27 15:46:05.217 +02:00 [WRN] The Include operation for navigation '[i].Tags' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-06-27 15:46:05.545 +02:00 [WRN] The Include operation for navigation '[i].Tags' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-06-27 15:48:11.462 +02:00 [WRN] Starting server in Development environment.
+2019-06-27 15:48:14.201 +02:00 [WRN] Migrating db
+2019-06-27 15:50:34.204 +02:00 [WRN] Starting server in Development environment.
+2019-06-27 15:50:36.975 +02:00 [WRN] Migrating db
+2019-06-27 15:50:40.708 +02:00 [WRN] The Include operation for navigation '[i].Tags' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-06-27 15:50:41.044 +02:00 [WRN] The Include operation for navigation '[i].Tags' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
